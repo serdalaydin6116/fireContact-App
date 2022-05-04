@@ -1,12 +1,21 @@
 import './App.css';
 
+import FormComponent from './components/form/FormComponent';
+import Contacts from "./components/contacts/Contacts"
 
 
-return (
+
+
+function App() {
+ 
+
+  return (
     <div className="App">
-     FireContact
+      <FormComponent />
+      <Contacts />
+      
     </div>
   );
-
+}
 
 export default App;
