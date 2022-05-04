@@ -53,8 +53,8 @@ const FormComponent = ({info,setInfo,handleFormSubmit}) => {
             <TextField
               variant="outlined"
               name="username"
-              value={info.username}
-              onChange={handleChange}
+              value={null}
+              onChange={null}
               placeholder="Name"
               InputProps={{
                 startAdornment: (
@@ -67,8 +67,8 @@ const FormComponent = ({info,setInfo,handleFormSubmit}) => {
             <TextField
               variant="outlined"
               name="phoneNumber"
-              value={info.phoneNumber}
-              onChange={handleChange}
+              value={null}
+              onChange={null}
               placeholder="Phone Number"
               InputProps={{
                 startAdornment: (
@@ -84,8 +84,8 @@ const FormComponent = ({info,setInfo,handleFormSubmit}) => {
                 label="Gender"
                 name="gender"
                 variant="outlined"
-                value={info.gender}
-                onChange={handleChange}
+                value={null}
+                onChange={null}
               >
                 <MenuItem value="Female">Female</MenuItem>
                 <MenuItem value="Male">Male</MenuItem>
