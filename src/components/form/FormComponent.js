@@ -14,7 +14,7 @@ import {
 import { AccountCircle } from "@mui/icons-material";
 import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
 
-const FormComponent = ({info,setInfo,handleFormSubmit}) => {
+const FormComponent = ({info,setInfo}) => {
   const handleChange=(e)=>{
     e.preventDefault();
     // const name=e.target.name 
@@ -48,13 +48,13 @@ const FormComponent = ({info,setInfo,handleFormSubmit}) => {
       <h2 className="contact-header">Add Contact</h2>
     
       <Box style={{ backgroundColor: "white", padding: "20px" }}>
-        <form onSubmit={handleFormSubmit}>
+        <form >
           <Stack spacing={3} direction="column">
             <TextField
               variant="outlined"
               name="username"
-              value={null}
-              onChange={null}
+              value={info.username}
+              onChange={handleChange}
               placeholder="Name"
               InputProps={{
                 startAdornment: (
@@ -67,8 +67,8 @@ const FormComponent = ({info,setInfo,handleFormSubmit}) => {
             <TextField
               variant="outlined"
               name="phoneNumber"
-              value={null}
-              onChange={null}
+              value={info.phoneNumber}
+              onChange={handleChange}
               placeholder="Phone Number"
               InputProps={{
                 startAdornment: (
@@ -84,8 +84,8 @@ const FormComponent = ({info,setInfo,handleFormSubmit}) => {
                 label="Gender"
                 name="gender"
                 variant="outlined"
-                value={null}
-                onChange={null}
+                value={info.gender}
+                onChange={handleChange}
               >
                 <MenuItem value="Female">Female</MenuItem>
                 <MenuItem value="Male">Male</MenuItem>

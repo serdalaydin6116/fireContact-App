@@ -8,12 +8,14 @@ import { useState } from 'react';
 const initialValues={username:"",phoneNumber:"",gender:"NO INFO"}
 
 function App() {
-  const [info,setInfo] =useState();
+  const [info,setInfo] =useState(initialValues);
+
+  
  
 
   return (
     <div className="App">
-      <FormComponent />
+      <FormComponent info={info} setInfo={setInfo}/>
       <Contacts />
       
     </div>
