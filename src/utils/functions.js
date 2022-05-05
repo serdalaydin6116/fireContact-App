@@ -2,9 +2,10 @@
 import firebase from "./firebase"
 import {useState,useEffect} from "react";
 import { getDatabase,ref,set,push,onValue, remove,update} from "firebase/database";
-import Toastify from "./toast";
 
-// Bilgi Ekleme
+import { toastSuccessNotify, toastWarningNotify, toastInfoNotify, toastDefaultNotify } from "./toast";
+
+// Adding info
 export const AddUser=(info)=>{
     const db = getDatabase();
     const userRef=ref(db,"baglanti");
@@ -14,6 +15,7 @@ export const AddUser=(info)=>{
         phoneNumber:info.phoneNumber,
         gender:info.gender,
     })
+    toastSuccessNotify("User info was added")
 }
 
 //yukarıda, asagıdaki dokumantasyondan farklı olarak,userRef kullanıldı, çunku bunlar ayrı ayrı farklı yerlerde ullanılacak. 
@@ -26,7 +28,7 @@ export const AddUser=(info)=>{
 //   });
 // }
 
-// Bilgi Çağırma
+// Get and fetching info
 
 export const useFetch=()=>{
     const [isLoading,setIsLoading]=useState();
@@ -47,27 +49,38 @@ export const useFetch=()=>{
             }          
             setContactList(baglantiArray);
             setIsLoading(false);
+            toastInfoNotify("User info was handled")
         });
     },[])
+
+    
     return {isLoading,contactList}
+
+   
 }
 
-// Bilgi silme
+// Deleting info
 export const DeleteUser=(id)=>{
         const db = getDatabase();
         const userRef=ref(db,"baglanti");
-        remove(ref(db,"baglanti/"+id))
+        remove(ref(db,"baglanti/"+id));
 
-        Toastify("Kullanıcı bilgisi silindi")
+        toastWarningNotify("User info was deleted");
 }
 
-// Bilgi Değiştirme
+// Editing info
 
 export const EditUser=(info)=>{
     const db = getDatabase();
     const updates = {};
 
     updates["baglanti/"+info.id]=info;
+
+    toastDefaultNotify("User info was edited");
     return update(ref(db),updates);
+
+   
+
+
 
 }
