@@ -3,7 +3,7 @@ import firebase from "./firebase"
 import {useState,useEffect} from "react";
 import { getDatabase,ref,set,push,onValue, remove,update} from "firebase/database";
 
-import { toastSuccessNotify, toastWarningNotify, toastInfoNotify, toastDefaultNotify } from "./toast";
+import { toastSuccessNotify, toastWarningNotify, toastInfoNotify} from "./toast";
 
 // Adding info
 export const AddUser=(info)=>{
@@ -49,10 +49,9 @@ export const useFetch=()=>{
             }          
             setContactList(baglantiArray);
             setIsLoading(false);
-            toastInfoNotify("User info was handled")
+        
         });
     },[])
-
     
     return {isLoading,contactList}
 
@@ -64,8 +63,10 @@ export const DeleteUser=(id)=>{
         const db = getDatabase();
         const userRef=ref(db,"baglanti");
         remove(ref(db,"baglanti/"+id));
+        toastWarningNotify("user info was deleted")
 
-        toastWarningNotify("User info was deleted");
+
+       
 }
 
 // Editing info
@@ -75,8 +76,9 @@ export const EditUser=(info)=>{
     const updates = {};
 
     updates["baglanti/"+info.id]=info;
+    toastInfoNotify("user info was edited")
 
-    toastDefaultNotify("User info was edited");
+    
     return update(ref(db),updates);
 
    
